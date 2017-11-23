@@ -19,21 +19,16 @@ public class ConverterService {
         Java2DFrameConverter frameConverter = new Java2DFrameConverter();
 
         for (long i = startFrame; i < endFrame; i++) {
-
             if (i % speed == 0) {
-
                 // Bug if frameNumber is set to 0
                 if (i > 0) {
                     frameGrabber.setFrameNumber((int) i);
                 }
-
                 BufferedImage bufferedImage = frameConverter
                         .convert(frameGrabber.grabImage());
                 gifEncoder.addFrame(bufferedImage);
             }
-
         }
-
         frameGrabber.stop();
         gifEncoder.finish();
     }
